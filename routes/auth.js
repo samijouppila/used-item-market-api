@@ -3,11 +3,6 @@ const authRouter = express.Router();
 const axios = require('axios');
 const login_url = process.env.LOGIN_SERVICE_URL;
 
-const {
-    issueNewJwtToken,
-    authenticateHttpBasic
-} = require('../controllers/authController');
-
 authRouter.get('/login', async function(req, res) {
     const axiosConfig = {
         headers: {

@@ -3,19 +3,6 @@ const userRouter = express.Router();
 const axios = require('axios');
 const login_url = process.env.LOGIN_SERVICE_URL;
 
-const {
-    checkJwt
-} = require('../controllers/authController')
-
-const {
-    createNewUser,
-    getSelectedUserData,
-    modifySelectedUserData,
-    deleteSelectedUser,
-    getSelectedUserPostings,
-    getSelectedUserSinglePosting
-} = require('../controllers/userController');
-
 userRouter.post('', async function(req, res) {
     try {
         const response = await axios.post(encodeURI(login_url + '/api/users'), req.body);
