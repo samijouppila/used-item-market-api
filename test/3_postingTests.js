@@ -109,7 +109,6 @@ describe('Posting routes', function () {
                 expect(response.body.seller.contactInformation.email).to.equal('matti.m@mail.com');
                 expect(response.body.seller.contactInformation).to.have.property('phoneNumber');
                 expect(response.body.seller.contactInformation.phoneNumber).to.equal('+358 40 1234 567');
-                expect(response.body).to.have.property('images');
                 expect(response.body).to.have.property('slug');
                 expect(response.body.slug).to.be.string();
                 expect(response.body).to.have.property('_id');
