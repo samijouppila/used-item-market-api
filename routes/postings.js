@@ -1,34 +1,96 @@
 const express = require('express');
 const postingRouter = express.Router();
+const axios = require('axios');
+const posting_url = process.env.POSTING_SERVICE_URL;
 
-const uploadFile = require('../utils/upload');
+postingRouter.post('', async function(req, res) {
+    const axiosConfig = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+    };
+    if (req.headers['authorization']) {
+        axiosConfig.headers.Authorization = req.headers.authorization;
+    }
+    try {
+        const response = await axios.post(encodeURI(posting_url + '/api/postings'), req.body, axiosConfig);
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(error.response.status).send(error.response.data);
+    }
+})
 
-const {
-    checkJwt
-} = require('../controllers/authController')
+postingRouter.get('/:slug', async function(req, res) {
+    const axiosConfig = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+    };
+    if (req.headers['authorization']) {
+        axiosConfig.headers.Authorization = req.headers.authorization;
+    }
+    try {
+        const response = await axios.get(encodeURI(posting_url + '/api/postings/' + req.params.slug), axiosConfig);
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(error.response.status).send(error.response.data);
+    }
+})
 
-const {
-    createNewPosting,
-    getExistingPosting,
-    modifyExistingPosting,
-    deleteExistingPosting,
-    addImageToPosting,
-    deleteSelectedImage,
-    searchForPostings
-} = require('../controllers/postingController');
+postingRouter.get('', async function(req, res) {
+    const axiosConfig = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+    };
+    if (req.headers['authorization']) {
+        axiosConfig.headers.Authorization = req.headers.authorization;
+    }
+    if (req['query']) {
+        axiosConfig.params = req.query;
+    }
+    try {
+        const response = await axios.get(encodeURI(posting_url + '/api/postings'), axiosConfig);
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(error.response.status).send(error.response.data);
+    }
+})
 
-postingRouter.post('/:slug/images', checkJwt, uploadFile, addImageToPosting);
+postingRouter.put('/:slug', async function(req, res) {
+    const axiosConfig = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+    };
+    if (req.headers['authorization']) {
+        axiosConfig.headers.Authorization = req.headers.authorization;
+    }
+    try {
+        const response = await axios.put(encodeURI(posting_url + '/api/postings/' + req.params.slug), req.body,  axiosConfig);
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(error.response.status).send(error.response.data);
+    }
+})
 
-postingRouter.delete('/:slug/images/:id', checkJwt, deleteSelectedImage);
+//postingRouter.delete('/:slug', checkJwt, deleteExistingPosting);
 
-postingRouter.post('', checkJwt,  createNewPosting);
-
-postingRouter.get('/:slug', getExistingPosting);
-
-postingRouter.get('', searchForPostings);
-
-postingRouter.put('/:slug', checkJwt, modifyExistingPosting);
-
-postingRouter.delete('/:slug', checkJwt, deleteExistingPosting);
+postingRouter.delete('/:slug', async function(req, res) {
+    const axiosConfig = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+    };
+    if (req.headers['authorization']) {
+        axiosConfig.headers.Authorization = req.headers.authorization;
+    }
+    try {
+        const response = await axios.delete(encodeURI(posting_url + '/api/postings/' + req.params.slug), axiosConfig);
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(error.response.status).send(error.response.data);
+    }
+})
 
 module.exports = postingRouter;
