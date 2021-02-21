@@ -1,7 +1,7 @@
 const express = require('express');
 const postingRouter = express.Router();
 const axios = require('axios');
-const posting_url = process.env.LOGIN_SERVICE_URL;
+const posting_url = process.env.POSTING_SERVICE_URL;
 
 postingRouter.post('', async function(req, res) {
     const axiosConfig = {
