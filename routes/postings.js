@@ -3,8 +3,6 @@ const postingRouter = express.Router();
 const axios = require('axios');
 const posting_url = process.env.LOGIN_SERVICE_URL;
 
-const uploadFile = require('../utils/upload');
-
 const {
     checkJwt
 } = require('../controllers/authController')
@@ -18,10 +16,6 @@ const {
     deleteSelectedImage,
     searchForPostings
 } = require('../controllers/postingController');
-
-postingRouter.post('/:slug/images', checkJwt, uploadFile, addImageToPosting);
-
-postingRouter.delete('/:slug/images/:id', checkJwt, deleteSelectedImage);
 
 postingRouter.post('', async function(req, res) {
     const axiosConfig = {
