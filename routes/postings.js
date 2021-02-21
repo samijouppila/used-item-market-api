@@ -3,20 +3,6 @@ const postingRouter = express.Router();
 const axios = require('axios');
 const posting_url = process.env.LOGIN_SERVICE_URL;
 
-const {
-    checkJwt
-} = require('../controllers/authController')
-
-const {
-    createNewPosting,
-    getExistingPosting,
-    modifyExistingPosting,
-    deleteExistingPosting,
-    addImageToPosting,
-    deleteSelectedImage,
-    searchForPostings
-} = require('../controllers/postingController');
-
 postingRouter.post('', async function(req, res) {
     const axiosConfig = {
         headers: {
