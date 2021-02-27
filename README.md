@@ -12,6 +12,7 @@ This repository contains the API service.
 Requires running instances of login-service and posting-service.
 
 [Login service](https://github.com/samijouppila/used-item-market-login)
+
 [Posting service](https://github.com/samijouppila/used-item-market-posting)
 
 Copy and rename .env.example to .env. Insert the following environment variables:
