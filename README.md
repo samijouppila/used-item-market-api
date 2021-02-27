@@ -19,13 +19,13 @@ Copy and rename .env.example to .env. Insert the following environment variables
 - LOGIN_SERVICE_URL= URL of running login-service instance
 - POSTING_SERVICE_URL= URL of running posting-service instance
 
-npm install
+`npm install`
 
 # Usage
-npm start
+`npm start`
 
 # Test
 
 **IMPORTANT! Ensure Login service and posting service are running in test mode!**
 
-npm test
+`npm test`
