@@ -9,10 +9,14 @@ This repository contains the API service.
 
 
 # Setup
+Requires running instances of login-service and posting-service.
+
+[Login service](https://github.com/samijouppila/used-item-market-login)
+[Posting service](https://github.com/samijouppila/used-item-market-posting)
+
 Copy and rename .env.example to .env. Insert the following environment variables:
-- MONGODB_PRODUCTION_URI: URI to your MongoDB production database
-- MONGODB_TEST_URI: URI to your MongoDB test database
-- JWT_SECRET: Your JWT secret.
+- LOGIN_SERVICE_URL= URL of running login-service instance
+- POSTING_SERVICE_URL= URL of running posting-service instance
 
 npm install
 
