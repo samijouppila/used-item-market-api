@@ -25,4 +25,7 @@ npm install
 npm start
 
 # Test
+
+**IMPORTANT! Ensure Login service and posting service are running in test mode!**
+
 npm test
